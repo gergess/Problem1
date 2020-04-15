@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="../static/favicon.ico" th:href="@{/static/favicon.ico}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{/static/css/main.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <title>List All</title>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1 class="my-4">Monitor List</h1>
+    </div>
+</header>
+<main role="main" class="container">
+    <p th:if="${#lists.isEmpty(monitors)}" class="alert alert-info">No monitor data</p>
+    <table th:unless="${#lists.isEmpty(monitors)}" class="table table-bordered table-striped mb-4">
+        <thead>
+        <tr class="table-primary">
+            <th scope="col">Count</th>
+            <th scope="col">Name</th>
+            <th scope="col">Inches</th>
+            <th scope="col">Refresh Rate</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="s,c: ${monitors}">
+            <th th:text="${c.count}" scope="row" class="align-middle">1</th>
+            <td th:text="${s.name}" class="align-middle">samsung</td>
+            <td th:text="${s.inches} + inches" class="align-middle">13 inches</td>
+            <td th:text="${s.refreshRate} + Hz" class="align-middle">60 Hz</td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>
